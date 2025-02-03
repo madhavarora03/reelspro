@@ -1,4 +1,4 @@
-import { Schema, models, model, Document } from "mongoose";
+import { Schema, models, model, Document, Model } from "mongoose";
 import { VIDEO_DIMENSIONS } from "@/constants";
 
 export interface IVideo extends Document {
@@ -32,6 +32,7 @@ const videoSchema = new Schema<IVideo>(
   { timestamps: true }
 );
 
-const Video = models.Video || model<IVideo>("Video", videoSchema);
+const Video =
+  (models.Video as Model<IVideo>) || model<IVideo>("Video", videoSchema);
 
 export default Video;
